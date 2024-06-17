@@ -92,27 +92,19 @@ div {
 		Footer
 		</div>
   </div>
-  
-
 </div>
-
- <div class="menu">
+<div class="menu">
  <label>CSS</label>
   <textarea cols="25" rows="25" id="css"></textarea>
    <label>HTML</label>
   <textarea cols="25" rows="25" id="html"></textarea>
-  </div>
+</div>
 
 <script>
 function div(grid) {
-
-	let width = screen.width;
-	
 	let docChildren = document.getElementById('editor').children;
-	
 	document.getElementById('css').value = 'div { \rborder: 1px dashed black;\r }\r';
 	document.getElementById('html').value = '';
-	
 	for(var j = 0; j < docChildren.length; j++) {
 		let height = document.getElementById(docChildren[j].id).style.height;
 		let width = document.getElementById(docChildren[j].id).style.width;
@@ -120,30 +112,22 @@ function div(grid) {
 		let containerHeight = document.getElementById('container').style.height;
 		let valueWidth = parseInt(width.replace('px','') / containerWidth.replace('px','') * 100);
 		let valueHeight = parseInt(height.replace('px','') / containerHeight.replace('px','') * 100);
-
 		let container = window.getComputedStyle(document.getElementById('container'))
 		let cs =document.getElementById(docChildren[j].id); 
 		let computed = window.getComputedStyle(cs);
-
 		let divw  = computed.getPropertyValue("width");
 		let divh = computed.getPropertyValue("height");
 		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
 		let name = document.getElementById(docChildren[j].id).innerText;
-		
 		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
 		document.getElementById('css').value += '\r.' + name + "{\r";
 		document.getElementById('css').value += 'height: ' + divh + ';\r';
 		document.getElementById('css').value += 'width: ' + Math.round((divw.replace('px','') / container.getPropertyValue("width").replace('px','')) * 100)  + '%;\r';
 		document.getElementById('css').value += 'float:left;\r';
 		document.getElementById('css').value += 'display:block;\r';
-
-
 		document.getElementById('css').value += "}\r";
-		
 		document.getElementById('html').value += '<div class="'+name+'"> </div>\r';
 	}
-	
-
 }
 </script>
 
