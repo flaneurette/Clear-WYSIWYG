@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+html, body {
+
+	margin:0px;
+	
+}
+
+div {
+	float:left;
+	height:200px;
+	display:inline-block;
+	margin-top: 20px;
+}
+
+.editor { 
+	display:block;
+	border: 1px solid grey;
+	width:1600px;
+	height:auto;
+	margin-left: 20px;
+}
+
+
+.menu {
+    width:200px;
+	display:block;
+	background-color: black;
+	color: white;
+	min-height: 1000px;
+	height: auto;
+	padding: 20px;
+	float: right;
+}
+
+
+.small {
+	font-size: 11px;
+    color: lightgrey;
+}
+.grid {
+	border:1px dashed lightgrey;
+	resize: both;
+	overflow:auto;
+	width:100%;
+	height:100%;
+	cursor: row-resize;
+}
+
+.container {
+	height: 900px;
+	width: 1600px;
+}
+
+.small {
+	margin-left: -50px;
+	margin-bottom: -10px;
+	margin-top:10px;
+}
+
+</style>
+<span class="small" id="tip">100%</span>
+<div class="container" id="container">
+  <div class="editor" id="editor">
+		<div onmousemove="div('grid1');" contenteditable="true" class="grid" id="grid1" style="height:100px;">
+		Header
+		</div>
+		<div onmousemove="div('grid2');" contenteditable="true" class="grid" id="grid2" style="height:100px;">
+		Navigation
+		</div>
+		<div onmousemove="div('grid3');" contenteditable="true" class="grid" id="grid3" style="height:100px;">
+		Main
+		</div>
+		<div onmousemove="div('grid4');" contenteditable="true" class="grid" id="grid4" style="height:100px;">
+		Card-1
+		</div>
+		<div onmousemove="div('grid5');" contenteditable="true" class="grid" id="grid5" style="height:100px;">
+		Card-2
+		</div>
+		<div onmousemove="div('grid6');" contenteditable="true" class="grid" id="grid6" style="height:100px;">
+		Card-3
+		</div>
+		<div onmousemove="div('grid7');" contenteditable="true" class="grid" id="grid7" style="height:100px;">
+		Footer
+		</div>
+  </div>
+  
+
+</div>
+
+ <div class="menu">
+ <label>CSS</label>
+  <textarea cols="25" rows="25" id="css"></textarea>
+   <label>HTML</label>
+  <textarea cols="25" rows="25" id="html"></textarea>
+  </div>
+
+<script>
+function div(grid) {
+
+	let docChildren = document.getElementById('editor').children;
+	
+	document.getElementById('css').value = 'div { \rborder: 1px dashed black;\r }\r';
+	document.getElementById('html').value = '';
+	
+	for(var j = 0; j < docChildren.length; j++) {
+		let height = document.getElementById(docChildren[j].id).style.height;
+		let width = document.getElementById(docChildren[j].id).style.width;
+		let containerWidth = document.getElementById('container').style.width; 
+		let containerHeight = document.getElementById('container').style.height;
+		let valueWidth = parseInt(width.replace('px','') / containerWidth.replace('px','') * 100);
+		let valueHeight = parseInt(height.replace('px','') / containerHeight.replace('px','') * 100);
+
+		let container = window.getComputedStyle(document.getElementById('container'))
+		let cs =document.getElementById(docChildren[j].id); 
+		let computed = window.getComputedStyle(cs);
+
+		let divw  = computed.getPropertyValue("width");
+		let divh = computed.getPropertyValue("height");
+		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
+		let name = document.getElementById(docChildren[j].id).innerText;
+		
+		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
+		document.getElementById('css').value += '\r.' + name + "{\r";
+		document.getElementById('css').value += 'height: ' + divh + ';\r';
+		document.getElementById('css').value += 'width: ' + Math.round((divw.replace('px','') / container.getPropertyValue("width").replace('px','')) * 100)  + '%;\r';
+		document.getElementById('css').value += "}\r";
+		
+		document.getElementById('html').value += '<div class="'+name+'"> </div>\r';
+	}
+	
+
+}
+</script>
+
+</body>
+</html>
