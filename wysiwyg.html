@@ -134,6 +134,10 @@ function div(grid) {
 		document.getElementById('css').value += '\r.' + name + "{\r";
 		document.getElementById('css').value += 'height: ' + divh + ';\r';
 		document.getElementById('css').value += 'width: ' + Math.round((divw.replace('px','') / container.getPropertyValue("width").replace('px','')) * 100)  + '%;\r';
+		document.getElementById('css').value += 'float:left;\r';
+		document.getElementById('css').value += 'display:block;\r';
+
+
 		document.getElementById('css').value += "}\r";
 		
 		document.getElementById('html').value += '<div class="'+name+'"> </div>\r';
