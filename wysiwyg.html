@@ -3,8 +3,9 @@
 <style>
 
 html, body {
+
 	margin:0px;
-	background-color: #000;
+	
 }
 
 div {
@@ -12,19 +13,19 @@ div {
 	height:200px;
 	display:inline-block;
 	margin-top: 20px;
-	background-color: white;
 }
 
 .editor { 
 	display:block;
 	border: 1px solid grey;
-	width:90%;
+	width:1600px;
 	height:auto;
 	margin-left: 20px;
 }
 
+
 .menu {
-    	width:200px;
+    width:200px;
 	display:block;
 	background-color: black;
 	color: white;
@@ -34,9 +35,10 @@ div {
 	float: right;
 }
 
+
 .small {
 	font-size: 11px;
-    	color: lightgrey;
+    color: lightgrey;
 }
 .grid {
 	border:1px dashed lightgrey;
@@ -49,7 +51,7 @@ div {
 
 .container {
 	height: 900px;
-	width: 80%;
+	width: 1600px;
 }
 
 .small {
@@ -90,6 +92,8 @@ div {
 		Footer
 		</div>
   </div>
+  
+
 </div>
 
  <div class="menu">
@@ -108,9 +112,8 @@ function div(grid) {
 	
 	document.getElementById('css').value = 'div { \rborder: 1px dashed black;\r }\r';
 	document.getElementById('html').value = '';
-		
-	for(var j = 0; j < docChildren.length; j++) {
 	
+	for(var j = 0; j < docChildren.length; j++) {
 		let height = document.getElementById(docChildren[j].id).style.height;
 		let width = document.getElementById(docChildren[j].id).style.width;
 		let containerWidth = document.getElementById('container').style.width; 
@@ -119,15 +122,15 @@ function div(grid) {
 		let valueHeight = parseInt(height.replace('px','') / containerHeight.replace('px','') * 100);
 
 		let container = window.getComputedStyle(document.getElementById('container'))
-		let cs = document.getElementById(docChildren[j].id); 
+		let cs =document.getElementById(docChildren[j].id); 
 		let computed = window.getComputedStyle(cs);
 
 		let divw  = computed.getPropertyValue("width");
 		let divh = computed.getPropertyValue("height");
+		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
 		let name = document.getElementById(docChildren[j].id).innerText;
 		
 		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
-		
 		document.getElementById('css').value += '\r.' + name + "{\r";
 		document.getElementById('css').value += 'height: ' + divh + ';\r';
 		document.getElementById('css').value += 'width: ' + Math.round((divw.replace('px','') / container.getPropertyValue("width").replace('px','')) * 100)  + '%;\r';
