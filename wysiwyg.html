@@ -15,14 +15,18 @@ div {
 	background-color: #fff;
 }
 
+.container {
+	height: 900px;
+	width: 80%;
+}
+
 .editor { 
 	display:block;
 	border: 1px solid grey;
-	width:1600px;
+	width:80%;
 	height:auto;
 	margin-left: 20px;
 }
-
 
 .menu {
     width:200px;
@@ -53,11 +57,6 @@ div {
 	padding-right:-20px;
 }
 
-.container {
-	height: 900px;
-	width: 1600px;
-}
-
 .small {
 	margin-left: -50px;
 	margin-bottom: -10px;
@@ -65,6 +64,7 @@ div {
 }
 
 ::-webkit-resizer {
+	/* from stack overflow */
 	border-width: 28px;
 	border-style: solid;
 	border-color: white black black white;
@@ -84,7 +84,6 @@ input[type="color"] {
 		Header
 		<input type="color" onchange="color('grid1','color1');" value="#ffffff" id="color1"/>
 		</div>
-		
 		<div onmousemove="div('grid2','color2');" contenteditable="true" class="grid" id="grid2" style="height:100px;">
 		Navigation
 		<input type="color" onchange="color('grid2','color2');" value="#ffffff" id="color2"/>
@@ -128,15 +127,21 @@ function color(grid,c) {
 
 function div(grid,c) {
 
-	let width = screen.width;
+	let screenwidth = document.body.clientWidth;
 	
+	if(screenwidth > 1600) { 
+	document.getElementById('container').style.width = '1600px';
+	document.getElementById('editor').style.width = '1600px';
+	} else { 
+	document.getElementById('container').style.width = '1000px';
+	document.getElementById('editor').style.width = '1000px';
+	}	
 	let docChildren = document.getElementById('editor').children;
 
 	document.getElementById('css').value = 'div { \rborder: 1px dashed black;\r }\r';
 	document.getElementById('html').value = '';
 	
 	for(var j = 0; j < docChildren.length; j++) {
-	
 		
 		let height = document.getElementById(docChildren[j].id).style.height;
 		let width = document.getElementById(docChildren[j].id).style.width;
@@ -152,14 +157,14 @@ function div(grid,c) {
 		let divw  = computed.getPropertyValue("width");
 		let divh = computed.getPropertyValue("height");
 		let color = computed.getPropertyValue("background-color");
-		
 		let fullwidth = Math.round((divw.replace('px','') / container.getPropertyValue("width").replace('px','')) * 100);
 		
-		if(fullwidth >= 95 && fullwidth <= 105) {
+		if(fullwidth >= 95 && fullwidth <= 108) {
 			fullwidth = 100;
 		}
 		
 		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
+		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
 		document.getElementById('css').value += '\r.' + name + "{\r";
 		document.getElementById('css').value += 'background-color: ' + color + ';\r';
 		document.getElementById('css').value += 'height: ' + divh + ';\r';
