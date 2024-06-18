@@ -127,17 +127,10 @@ function color(grid,c) {
 }
 
 function div(grid,c) {
-
-	let width = screen.width;
-	
 	let docChildren = document.getElementById('editor').children;
-
 	document.getElementById('css').value = 'div { \rborder: 1px dashed black;\r }\r';
 	document.getElementById('html').value = '';
-	
 	for(var j = 0; j < docChildren.length; j++) {
-	
-		
 		let height = document.getElementById(docChildren[j].id).style.height;
 		let width = document.getElementById(docChildren[j].id).style.width;
 		let containerWidth = document.getElementById('container').style.width; 
@@ -147,12 +140,10 @@ function div(grid,c) {
 		let container = window.getComputedStyle(document.getElementById('container'))
 		let cs =document.getElementById(docChildren[j].id); 
 		let computed = window.getComputedStyle(cs);
-
 		let name = document.getElementById(docChildren[j].id).innerText;
 		let divw  = computed.getPropertyValue("width");
 		let divh = computed.getPropertyValue("height");
 		let color = computed.getPropertyValue("background-color");
-		
 		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
 		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
 		document.getElementById('css').value += '\r.' + name + "{\r";
