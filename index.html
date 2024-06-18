@@ -33,7 +33,7 @@ div {
 }
 
 .menu {
-    width:200px;
+    	width:200px;
 	display:block;
 	background-color: black;
 	color: white;
@@ -95,30 +95,39 @@ h1 {
 	width: 100%;
 	height: 19px;
 	background-image: 
-    repeating-linear-gradient(
-      90deg,
-      black,
-      transparent 1px,
-      transparent 50px
+    	repeating-linear-gradient(
+      	90deg,
+      	black,
+      	transparent 1px,
+      	transparent 50px
     ),
-    repeating-linear-gradient(
-      90deg,
-      lightgrey,
-      transparent 1px,
-      transparent 25px
-    ),repeating-linear-gradient(
-      90deg,
-      lightgrey,
-      transparent 1px,
-      transparent 12.5px
+    	repeating-linear-gradient(
+      	90deg,
+      	lightgrey,
+      	transparent 1px,
+      	transparent 25px
+    ),
+	repeating-linear-gradient(
+      	90deg,
+      	lightgrey,
+      	transparent 1px,
+      	transparent 12.5px
     );
 	border-top: 1px solid grey;
 	margin-bottom: 20px;
 	margin-top:-2px;
 }
 
-</style>
+#x {
+	width: 1px;
+	background-color: lightgrey;
+	height: 100%;
+	position: absolute;
+	left: 1;
+	z-index: 1;
+}
 
+</style>
 <div class="ruler"></div><span class="small" id="tip">100%</span>
 <div class="container" id="container">
   <div class="editor" id="editor">
@@ -152,17 +161,16 @@ h1 {
 		</div>
   </div>
 </div>
-
 <div class="menu">
 	<label>CSS</label>
 	<textarea cols="25" rows="25" id="css"></textarea>
 	<label>HTML</label>
 	<textarea cols="25" rows="25" id="html"></textarea>
 </div>
-
+<div id="x"></div>
 <script>
 
-function color(grid,c) {
+function color(grid,c,event) {
 	let color = document.getElementById(c).value;
 	document.getElementById(grid).style.backgroundColor = color;
 }
@@ -178,6 +186,11 @@ function div(grid,c) {
 	document.getElementById('container').style.width = '1000px';
 	document.getElementById('editor').style.width = '1000px';
 	}	
+	
+	let x = event.clientX;
+	let y = event.clientY;
+	document.getElementById('x').style.left = (x +10) +'px';
+  
 	let docChildren = document.getElementById('editor').children;
 
 	document.getElementById('css').value = 'div { \rborder: 1px dashed black;\r }\r';
