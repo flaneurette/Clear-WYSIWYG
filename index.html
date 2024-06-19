@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<head>
 <style>
 
 * {
@@ -8,6 +9,10 @@
 
 html, body {
 	margin:0px;
+}
+
+body {
+	background-color: #fff;
 }
 
 div {
@@ -117,7 +122,30 @@ h1 {
 	margin-bottom: 20px;
 	margin-top:-2px;
 }
-
+.rulery  { 
+  height: 1200px;
+  width: 19px;
+ background-image: 
+    	repeating-linear-gradient(
+      	180deg,
+      	black,
+      	transparent 1px,
+      	transparent 50px
+    ),
+    repeating-linear-gradient(
+      	180deg,
+      	lightgrey,
+      	transparent 1px,
+      	transparent 25px
+    ),
+	repeating-linear-gradient(
+      	180deg,
+      	lightgrey,
+      	transparent 1px,
+      	transparent 12.5px
+    );
+	margin-top:3px;
+}
 #x {
 	width: 1px;
 	background-color: lightgrey;
@@ -128,7 +156,11 @@ h1 {
 }
 
 </style>
-<div class="ruler"></div><span class="small" id="tip">100%</span>
+</head>
+<body id="body">
+<div class="ruler"></div>
+<div class="rulery"></div>
+<span class="small" id="tip">100%</span>
 <div class="container" id="container">
   <div class="editor" id="editor">
 		<div onmousemove="div('grid1','color1');" contenteditable="true" class="grid" id="grid1" style="height:100px;">
@@ -162,6 +194,8 @@ h1 {
   </div>
 </div>
 <div class="menu">
+	BG color: <input type="color" id="bg" onchange="bgcolor();" />
+	<hr />
 	<label>CSS</label>
 	<textarea cols="25" rows="25" id="css"></textarea>
 	<label>HTML</label>
@@ -170,15 +204,20 @@ h1 {
 <div id="x"></div>
 <script>
 
+function bgcolor() {
+	let color = document.getElementById('bg').value;
+	document.getElementById('body').style.backgroundColor = color;
+	document.getElementById('container').style.backgroundColor = color;
+	document.getElementById('editor').style.backgroundColor = color;
+}
+
 function color(grid,c,event) {
 	let color = document.getElementById(c).value;
 	document.getElementById(grid).style.backgroundColor = color;
 }
 
 function div(grid,c) {
-
 	let screenwidth = document.body.clientWidth;
-	
 	if(screenwidth > 1600) { 
 	document.getElementById('container').style.width = '1600px';
 	document.getElementById('editor').style.width = '1600px';
@@ -186,18 +225,15 @@ function div(grid,c) {
 	document.getElementById('container').style.width = '1000px';
 	document.getElementById('editor').style.width = '1000px';
 	}	
-	
 	let x = event.clientX;
 	let y = event.clientY;
 	document.getElementById('x').style.left = (x +10) +'px';
-  
 	let docChildren = document.getElementById('editor').children;
-
-	document.getElementById('css').value = 'div { \rborder: 1px dashed black;\r }\r';
+	let bgcolor = document.getElementById('bg').value;
+	document.getElementById('css').value = 'body { \rbackground-color: '+bgcolor+';\r }\r';		
+	document.getElementById('css').value += 'div { \rborder: 1px dashed black;\r }\r';
 	document.getElementById('html').value = '';
-	
 	for(var j = 0; j < docChildren.length; j++) {
-		
 		let height = document.getElementById(docChildren[j].id).style.height;
 		let width = document.getElementById(docChildren[j].id).style.width;
 		let containerWidth = document.getElementById('container').style.width; 
@@ -213,11 +249,9 @@ function div(grid,c) {
 		let divh = computed.getPropertyValue("height");
 		let color = computed.getPropertyValue("background-color");
 		let fullwidth = Math.round((divw.replace('px','') / container.getPropertyValue("width").replace('px','')) * 100);
-		
 		if(fullwidth >= 95 && fullwidth <= 108) {
 			fullwidth = 100;
 		}
-		
 		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
 		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
 		document.getElementById('css').value += '\r.' + name + "{\r";
