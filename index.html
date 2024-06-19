@@ -27,18 +27,19 @@ div {
 .container {
 	height: 900px;
 	width: 80%;
+	margin-top: -20px;
 }
 
 .editor { 
 	display:block;
 	border: 1px solid grey;
 	width:80%;
+	margin-top: 0px;
 	height:auto;
-	margin-left: 20px;
 }
 
 .menu {
-    	width:200px;
+    width:200px;
 	display:block;
 	background-color: black;
 	color: white;
@@ -121,7 +122,7 @@ h1 {
 	border-top: 1px solid grey;
 	margin-bottom: 20px;
 	margin-top:-2px;
-	margin-left: -9px;
+	margin-left: 0px;
 }
 .rulery  { 
   height: 1200px;
@@ -145,7 +146,7 @@ h1 {
       	transparent 1px,
       	transparent 12.5px
     );
-	margin-top:2px;
+	margin-top: -20px;
 }
 #x {
 	width: 1px;
@@ -189,8 +190,16 @@ h1 {
 		<input type="color" onchange="color('grid6','color6');" value="#ffffff" id="color6"/>
 		</div>
 		<div onmousemove="div('grid7','color7');" contenteditable="true" class="grid" id="grid7" style="height:100px;">
-		Footer
+		Content-1
 		<input type="color" onchange="color('grid7','color7');" value="#ffffff" id="color7"/>
+		</div>		
+		<div onmousemove="div('grid8','color8');" contenteditable="true" class="grid" id="grid8" style="height:100px;">
+		Content-2
+		<input type="color" onchange="color('grid8','color8');" value="#ffffff" id="color8"/>
+		</div>		
+		<div onmousemove="div('grid9','color9');" contenteditable="true" class="grid" id="grid9" style="height:100px;">
+		Footer
+		<input type="color" onchange="color('grid9','color9');" value="#ffffff" id="color9"/>
 		</div>
   </div>
 </div>
