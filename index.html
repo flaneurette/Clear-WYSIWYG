@@ -47,6 +47,7 @@ div {
 	height: auto;
 	padding: 20px;
 	float: right;
+	margin-top: 38px;
 }
 
 .small {
@@ -58,13 +59,14 @@ div {
 	border:1px dashed lightgrey;
 	resize: both;
 	overflow:auto;
-	width:100%;
+	width:98.7%;
 	height:100%;
 	cursor: pointer;
 	line-height: 100px;
 	font-size: 28px;
 	padding-left: 20px;
 	padding-right:-20px;
+	color: lightgrey;
 }
 
 .small {
@@ -170,7 +172,7 @@ h1 {
   <div class="editor" id="editor">
 		<div onmousemove="div('grid1','color1');" contenteditable="true" class="grid" id="grid1" style="height:100px;">
 		Header
-		<input type="color" onchange="color('grid1','color1');" value="#ffffff" id="color1"/>
+		<input type="color" onchange="color('grid1','color1');"  value="#ffffff" id="color1"/>
 		</div>
 		<div onmousemove="div('grid2','color2');" contenteditable="true" class="grid" id="grid2" style="height:100px;">
 		Navigation
@@ -230,8 +232,17 @@ function color(grid,c,event) {
 }
 
 function div(grid,c) {
+
 	let screenwidth = document.body.clientWidth;
+	let gridw = document.getElementById(grid).style.width;
+	let ceil =  Math.ceil(parseInt(gridw));
+	
 	if(screenwidth > 1600) { 
+	
+	if(ceil >= 1580 || ceil >= 1560 ) { 
+		ceil = 1580;
+	}
+	
 	document.getElementById('container').style.width = '1600px';
 	document.getElementById('editor').style.width = '1600px';
 	} else { 
@@ -246,6 +257,9 @@ function div(grid,c) {
 	document.getElementById('css').value = 'body { \rbackground-color: '+bgcolor+';\r }\r';		
 	document.getElementById('css').value += 'div { \rborder: 1px dashed black;\r }\r';
 	document.getElementById('html').value = '';
+	
+	document.getElementById(grid).style.width = (ceil) +'px';
+	
 	for(var j = 0; j < docChildren.length; j++) {
 		let height = document.getElementById(docChildren[j].id).style.height;
 		let width = document.getElementById(docChildren[j].id).style.width;
