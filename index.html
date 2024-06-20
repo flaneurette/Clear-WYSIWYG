@@ -48,6 +48,8 @@ div {
 	padding: 20px;
 	float: right;
 	margin-top: 38px;
+	border-radius: 25px;
+	margin-right:10px;
 }
 
 .small {
@@ -61,12 +63,11 @@ div {
 	overflow:auto;
 	width:98.7%;
 	height:100%;
-	cursor: pointer;
+	cursor: move;
 	line-height: 100px;
 	font-size: 28px;
 	padding-left: 20px;
 	padding-right:-20px;
-	color: lightgrey;
 }
 
 .small {
@@ -89,7 +90,7 @@ input[type="color"] {
 }
 
 textarea {
-	background-color: #666;
+	background-color: #333;
 	color: white;
 	border: 1px solid black;
 }
@@ -162,6 +163,24 @@ h1 {
 	z-index: 1;
 }
 
+#bg, #fc {
+	display: block;
+	width: 200px;
+}
+
+hr {
+	display: block;
+	clear:both;
+	background-color: #333;
+	border: 1px solid #333;
+	margin-top: 20px;
+}
+
+.grid > div {
+	resize: both;
+	overflow: auto;
+	border: 1px dashed grey;
+}
 </style>
 </head>
 <body id="body">
@@ -209,8 +228,10 @@ h1 {
   </div>
 </div>
 <div class="menu">
-	BG color: <input type="color" id="bg" onchange="bgcolor();" />
+	Background color <input type="color" id="bg" class="bg" value="#ffffff" onchange="setcolors();" />
 	<hr />
+	Font color <input type="color" id="fc" class="bg" value="#666666" onchange="setcolors();" />
+	<hr />	
 	<label>CSS</label>
 	<textarea cols="25" rows="25" id="css"></textarea>
 	<label>HTML</label>
@@ -219,11 +240,13 @@ h1 {
 <div id="x"></div>
 <script>
 
-function bgcolor() {
-	let color = document.getElementById('bg').value;
-	document.getElementById('body').style.backgroundColor = color;
-	document.getElementById('container').style.backgroundColor = color;
-	document.getElementById('editor').style.backgroundColor = color;
+function setcolors() {
+	let bgcolor = document.getElementById('bg').value;
+	let fontcolor = document.getElementById('fc').value;
+	document.getElementById('body').style.backgroundColor = bgcolor;
+	document.getElementById('container').style.backgroundColor = bgcolor;
+	document.getElementById('editor').style.backgroundColor = bgcolor;
+	document.getElementById('body').style.color = fontcolor;
 }
 
 function color(grid,c,event) {
@@ -271,7 +294,8 @@ function div(grid,c) {
 		let cs =document.getElementById(docChildren[j].id); 
 		let computed = window.getComputedStyle(cs);
 
-		let name = document.getElementById(docChildren[j].id).innerText;
+		let name = document.getElementById('editor').children[j].innerText.split('\n')[0];
+
 		let divw  = computed.getPropertyValue("width");
 		let divh = computed.getPropertyValue("height");
 		let color = computed.getPropertyValue("background-color");
