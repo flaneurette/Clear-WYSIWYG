@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -190,39 +191,39 @@ hr {
 <div class="container" id="container">
   <div class="editor" id="editor">
 		<div onmousemove="div('grid1','color1');" contenteditable="true" class="grid" id="grid1" style="height:100px;">
-		Header
+		header
 		<input type="color" onchange="color('grid1','color1');"  value="#ffffff" id="color1"/>
 		</div>
 		<div onmousemove="div('grid2','color2');" contenteditable="true" class="grid" id="grid2" style="height:100px;">
-		Navigation
+		navigation
 		<input type="color" onchange="color('grid2','color2');" value="#ffffff" id="color2"/>
 		</div>
 		<div onmousemove="div('grid3','color3');" contenteditable="true" class="grid" id="grid3" style="height:100px;">
-		Main
+		main
 		<input type="color" onchange="color('grid3','color3');" value="#ffffff" id="color3"/>
 		</div>
 		<div onmousemove="div('grid4','color4');" contenteditable="true" class="grid" id="grid4" style="height:100px;">
-		Card-1
+		card-1
 		<input type="color" onchange="color('grid4','color4');" value="#ffffff" id="color4"/>
 		</div>
 		<div onmousemove="div('grid5','color5');" contenteditable="true" class="grid" id="grid5" style="height:100px;">
-		Card-2
+		card-2
 		<input type="color" onchange="color('grid5','color5');" value="#ffffff" id="color5"/>
 		</div>
 		<div onmousemove="div('grid6','color6');" contenteditable="true" class="grid" id="grid6" style="height:100px;">
-		Card-3
+		card-3
 		<input type="color" onchange="color('grid6','color6');" value="#ffffff" id="color6"/>
 		</div>
 		<div onmousemove="div('grid7','color7');" contenteditable="true" class="grid" id="grid7" style="height:100px;">
-		Content-1
+		content-1
 		<input type="color" onchange="color('grid7','color7');" value="#ffffff" id="color7"/>
 		</div>		
 		<div onmousemove="div('grid8','color8');" contenteditable="true" class="grid" id="grid8" style="height:100px;">
-		Content-2
+		content-2
 		<input type="color" onchange="color('grid8','color8');" value="#ffffff" id="color8"/>
 		</div>		
 		<div onmousemove="div('grid9','color9');" contenteditable="true" class="grid" id="grid9" style="height:100px;">
-		Footer
+		footer
 		<input type="color" onchange="color('grid9','color9');" value="#ffffff" id="color9"/>
 		</div>
   </div>
@@ -312,7 +313,11 @@ function div(grid,c) {
 		document.getElementById('css').value += 'float:left;\r';
 		document.getElementById('css').value += 'display:inline-block;\r';
 		document.getElementById('css').value += "}\r";
-		document.getElementById('html').value += '<div class="'+name+'"> </div>\r';
+		if(name == 'footer') {
+			document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
+			} else {
+			document.getElementById('html').value += '<article class="'+name+'"> </article>\r';
+		}
 	}
 }
 </script>
