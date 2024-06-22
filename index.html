@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,7 +194,7 @@ hr {
 		<input type="color" onchange="color('grid1','color1');"  value="#ffffff" id="color1"/>
 		</div>
 		<div onmousemove="div('grid2','color2');" contenteditable="true" class="grid" id="grid2" style="height:100px;">
-		navigation
+		nav
 		<input type="color" onchange="color('grid2','color2');" value="#ffffff" id="color2"/>
 		</div>
 		<div onmousemove="div('grid3','color3');" contenteditable="true" class="grid" id="grid3" style="height:100px;">
@@ -315,6 +314,10 @@ function div(grid,c) {
 		document.getElementById('css').value += "}\r";
 		if(name == 'footer') {
 			document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
+			} else if(name == 'header') {
+			document.getElementById('html').value += '<header class="'+name+'"> </header>\r';
+			} else if(name == 'nav') {
+			document.getElementById('html').value += '<nav class="'+name+'"> </nav>\r';
 			} else {
 			document.getElementById('html').value += '<article class="'+name+'"> </article>\r';
 		}
