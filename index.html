@@ -283,11 +283,15 @@ function div(grid,c) {
 	
 	document.getElementById(grid).style.width = (ceil) +'px';
 	
+	var templocation = 'left';
+	var prevwidth = 0;
+	
 	for(var j = 0; j < docChildren.length; j++) {
+
 		let height = document.getElementById(docChildren[j].id).style.height;
 		let width = document.getElementById(docChildren[j].id).style.width;
 		let containerWidth = document.getElementById('container').style.width; 
-		let containerHeight = document.getElementById('container').style.height;
+		let containerHeight = document.getElementById('container').style.height;		
 		let valueWidth = parseInt(width.replace('px','') / containerWidth.replace('px','') * 100);
 		let valueHeight = parseInt(height.replace('px','') / containerHeight.replace('px','') * 100);
 		let container = window.getComputedStyle(document.getElementById('container'))
@@ -300,7 +304,7 @@ function div(grid,c) {
 		let divh = computed.getPropertyValue("height");
 		let color = computed.getPropertyValue("background-color");
 		let fullwidth = Math.round((divw.replace('px','') / container.getPropertyValue("width").replace('px','')) * 100);
-		if(fullwidth >= 95 && fullwidth <= 108) {
+		if(fullwidth >= 95 && fullwidth <= 160) {
 			fullwidth = 100;
 		}
 		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
@@ -309,8 +313,16 @@ function div(grid,c) {
 		document.getElementById('css').value += 'background-color: ' + color + ';\r';
 		document.getElementById('css').value += 'height: ' + divh + ';\r';
 		document.getElementById('css').value += 'width: ' + fullwidth  + '%;\r';
-		document.getElementById('css').value += 'float:left;\r';
-		document.getElementById('css').value += 'display:inline-block;\r';
+		document.getElementById('css').value += 'float:'+templocation+';\r';
+		if(fullwidth < 50 && prevwidth < 50) {
+			document.getElementById('css').value += 'display:inline-block;\r';
+			templocation = 'right';
+			prevwith = fullwidth;
+			} else {
+			document.getElementById('css').value += 'display:block;\r';
+			templocation = 'left';
+			prevwith = 0;
+		}
 		document.getElementById('css').value += "}\r";
 		if(name == 'footer') {
 			document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
