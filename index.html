@@ -309,17 +309,17 @@ function div(grid,c) {
 		}
 		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
 		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
-		document.getElementById('css').value += '\r.' + name + "{\r";
+		document.getElementById('css').value += '\r.' + name + " {\r";
 		document.getElementById('css').value += 'background-color: ' + color + ';\r';
 		document.getElementById('css').value += 'height: ' + divh + ';\r';
 		document.getElementById('css').value += 'width: ' + fullwidth  + '%;\r';
-		document.getElementById('css').value += 'float:'+templocation+';\r';
+		document.getElementById('css').value += 'float: '+templocation+';\r';
 		if(fullwidth < 50 && prevwidth < 50 && templocation =='left') {
-			document.getElementById('css').value += 'display:inline-block;\r';
+			document.getElementById('css').value += 'display: inline-block;\r';
 			templocation = 'right';
 			prevwith = fullwidth;
 			} else {
-			document.getElementById('css').value += 'display:block;\r';
+			document.getElementById('css').value += 'display: block;\r';
 			templocation = 'left';
 			prevwith = 0;
 		}
