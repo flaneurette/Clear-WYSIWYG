@@ -1,6 +1,6 @@
-# DIV-Designer
-An online WYSIWYG UI designer tool, to quickly generate DIV layouts, with resizable div containers.
+# HTML5 Layout Designer
+An online WYSIWYG UI designer tool, to generate HTML5 Article layouts, with resizable containers.
 
-Online example: https://flaneurette.github.io/DIV-Designer/
+Online example: https://flaneurette.github.io/HTML5-Layout-designer/
 
-<img src="https://github.com/flaneurette/div-wysiwyg/blob/main/example.png.png" />
+<img src="https://github.com/flaneurette/HTML5-Layout-designer/blob/main/example.png.png" />
