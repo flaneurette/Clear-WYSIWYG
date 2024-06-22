@@ -172,7 +172,7 @@ hr {
 	clear:both;
 	background-color: #333;
 	border: 1px solid #333;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .grid > div {
@@ -180,6 +180,39 @@ hr {
 	overflow: auto;
 	border: 1px dashed grey;
 }
+#rightmenu {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	display:none;
+	background-color: #000;
+	color: white;
+	width: 200px;
+	height: 50px;
+	list-style: none;
+	z-index: 1;
+	padding: 20px;
+}
+
+#rightmenu li {
+	padding: 20px;
+	cursor: pointer;
+}
+p {
+	margin: 0em;
+	padding: 0em;
+	width: 300px;
+	display:inline-block;
+}
+.colorwheel {
+	postion: absolute;
+	top: 10px;
+	float:right;
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+}
+
 </style>
 </head>
 <body id="body">
@@ -188,42 +221,15 @@ hr {
 <span class="small" id="tip">100%</span>
 <div class="container" id="container">
   <div class="editor" id="editor">
-		<div onmousemove="div('grid1','color1');" contenteditable="true" class="grid" id="grid1" style="height:100px;">
-		header
-		<input type="color" onchange="color('grid1','color1');"  value="#ffffff" id="color1"/>
-		</div>
-		<div onmousemove="div('grid2','color2');" contenteditable="true" class="grid" id="grid2" style="height:100px;">
-		nav
-		<input type="color" onchange="color('grid2','color2');" value="#ffffff" id="color2"/>
-		</div>
-		<div onmousemove="div('grid3','color3');" contenteditable="true" class="grid" id="grid3" style="height:100px;">
-		main
-		<input type="color" onchange="color('grid3','color3');" value="#ffffff" id="color3"/>
-		</div>
-		<div onmousemove="div('grid4','color4');" contenteditable="true" class="grid" id="grid4" style="height:100px;">
-		card-1
-		<input type="color" onchange="color('grid4','color4');" value="#ffffff" id="color4"/>
-		</div>
-		<div onmousemove="div('grid5','color5');" contenteditable="true" class="grid" id="grid5" style="height:100px;">
-		card-2
-		<input type="color" onchange="color('grid5','color5');" value="#ffffff" id="color5"/>
-		</div>
-		<div onmousemove="div('grid6','color6');" contenteditable="true" class="grid" id="grid6" style="height:100px;">
-		card-3
-		<input type="color" onchange="color('grid6','color6');" value="#ffffff" id="color6"/>
-		</div>
-		<div onmousemove="div('grid7','color7');" contenteditable="true" class="grid" id="grid7" style="height:100px;">
-		content-1
-		<input type="color" onchange="color('grid7','color7');" value="#ffffff" id="color7"/>
-		</div>		
-		<div onmousemove="div('grid8','color8');" contenteditable="true" class="grid" id="grid8" style="height:100px;">
-		content-2
-		<input type="color" onchange="color('grid8','color8');" value="#ffffff" id="color8"/>
-		</div>		
-		<div onmousemove="div('grid9','color9');" contenteditable="true" class="grid" id="grid9" style="height:100px;">
-		footer
-		<input type="color" onchange="color('grid9','color9');" value="#ffffff" id="color9"/>
-		</div>
+		<div onmousemove="div('grid1','color1');" oncontextmenu="insert('grid1',event);" contenteditable="true" class="grid" id="grid1" style="height:100px;"><p>header</p><input type="color" onchange="color('grid1','color1');"  value="#ffffff" id="color1" class="colorwheel"/></div>
+		<div onmousemove="div('grid2','color2');" oncontextmenu="insert('grid2',event);" contenteditable="true" class="grid" id="grid2" style="height:100px;"><p>nav</p><input type="color" onchange="color('grid2','color2');" value="#ffffff" id="color2" class="colorwheel"/></div>
+		<div onmousemove="div('grid3','color3');" oncontextmenu="insert('grid3',event);" contenteditable="true" class="grid" id="grid3" style="height:100px;"><p>main</p><input type="color" onchange="color('grid3','color3');" value="#ffffff" id="color3" class="colorwheel"/></div>
+		<div onmousemove="div('grid4','color4');" oncontextmenu="insert('grid4',event);" contenteditable="true" class="grid" id="grid4" style="height:100px;"><p>card-1</p><input type="color" onchange="color('grid4','color4');" value="#ffffff" id="color4" class="colorwheel"/></div>
+		<div onmousemove="div('grid5','color5');" oncontextmenu="insert('grid5',event);" contenteditable="true" class="grid" id="grid5" style="height:100px;"><p>card-2</p><input type="color" onchange="color('grid5','color5');" value="#ffffff" id="color5" class="colorwheel"/></div>
+		<div onmousemove="div('grid6','color6');" oncontextmenu="insert('grid6',event);" contenteditable="true" class="grid" id="grid6" style="height:100px;"><p>card-3</p><input type="color" onchange="color('grid6','color6');" value="#ffffff" id="color6" class="colorwheel"/></div>
+		<div onmousemove="div('grid7','color7');" oncontextmenu="insert('grid7',event);" contenteditable="true" class="grid" id="grid7" style="height:100px;"><p>content-1</p><input type="color" onchange="color('grid7','color7');" value="#ffffff" id="color7" class="colorwheel"/></div>		
+		<div onmousemove="div('grid8','color8');" oncontextmenu="insert('grid8',event);" contenteditable="true" class="grid" id="grid8" style="height:100px;"><p>content-2</p><input type="color" onchange="color('grid8','color8');" value="#ffffff" id="color8" class="colorwheel"/></div>		
+		<div onmousemove="div('grid9','color9');" oncontextmenu="insert('grid9',event);" contenteditable="true" class="grid" id="grid9" style="height:100px;"><p>footer</p><input type="color" onchange="color('grid9','color9');" value="#ffffff" id="color9" class="colorwheel"/></div>
   </div>
 </div>
 <div class="menu">
@@ -233,11 +239,56 @@ hr {
 	<hr />	
 	<label>CSS</label>
 	<textarea cols="25" rows="25" id="css"></textarea>
+	<hr />
+	Method
+	<select name="method" id="method" />
+	<option value="article">article</option>
+	<option value="section">section</option>
+	<option value="div">div</option>
+	</select>
+	<hr />
 	<label>HTML</label>
 	<textarea cols="25" rows="25" id="html"></textarea>
 </div>
 <div id="x"></div>
+<div id="rightmenu">
+	<ul id="menu">
+	</ul>
+</div>
 <script>
+function insert(grid,event) {
+	event.preventDefault();
+	let rightmenu = document.getElementById('rightmenu');
+	let menu = document.getElementById(grid);
+	rightmenu.innerHTML = '<li onclick="insertdiv(\''+grid+'\',1)" onmouseout="hide()">Insert div</li>';
+	rightmenu.style.display = 'block';
+	rightmenu.style.top = event.clientY + 'px';
+	rightmenu.style.left = event.clientX + 'px';
+}
+
+function hide() {
+	rightmenu.style.display = 'none';
+}
+
+function insertdiv(grid, n) {
+
+    parent = document.getElementById(grid);
+	for(let i=0; i <=n; i++) {
+		divs = document.createElement("div");
+		divs.style.height = '100px';
+		divs.style.float = 'left';
+		text = document.createTextNode("div"+n);
+		divs.appendChild(text);
+	}
+	parent.appendChild(divs);
+	parent.insertAdjacentElement("beforeend", divs);
+	let name = document.getElementById(grid).children[0].innerText.split('\n')[0].replaceAll(' ','-').toLowerCase();
+	let html = document.getElementById('html').value;
+	let regExp = new RegExp("<"+name+".*>(.*)<\/"+name+">/gim");
+	console.log("<"+name+".*>(.*)<\/"+name+">/gi");
+	html = html.replace(regExp,'<'+name+'.*>'+divs+'</'+name+'>');
+
+}
 
 function setcolors() {
 	let bgcolor = document.getElementById('bg').value;
@@ -277,7 +328,7 @@ function div(grid,c) {
 	let docChildren = document.getElementById('editor').children;
 	let bgcolor = document.getElementById('bg').value;
 	document.getElementById('css').value = 'body { \rbackground-color: '+bgcolor+';\r }\r';		
-	document.getElementById('css').value += 'div { \rborder: 1px dashed black;\r }\r';
+	document.getElementById('css').value += 'div, article, header, nav, footer { \rborder: 1px dashed black;\r }\r';
 	document.getElementById('html').value = '';
 	
 	document.getElementById(grid).style.width = (ceil) +'px';
@@ -296,7 +347,7 @@ function div(grid,c) {
 		let container = window.getComputedStyle(document.getElementById('container'))
 		let cs =document.getElementById(docChildren[j].id); 
 		let computed = window.getComputedStyle(cs);
-
+		let method = document.getElementById('method').value;
 		let name = document.getElementById('editor').children[j].innerText.split('\n')[0].replaceAll(' ','-').toLowerCase();
 
 		let divw  = computed.getPropertyValue("width");
@@ -323,17 +374,33 @@ function div(grid,c) {
 			prevwith = 0;
 		}
 		document.getElementById('css').value += "}\r";
-		if(name == 'footer') {
-			document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
-			} else if(name == 'header') {
-			document.getElementById('html').value += '<header class="'+name+'"> </header>\r';
-			} else if(name == 'nav') {
-			document.getElementById('html').value += '<nav class="'+name+'"> </nav>\r';
-			} else {
-			document.getElementById('html').value += '<article class="'+name+'"> </article>\r';
+		
+		if(method == 'article') {
+			if(name == 'footer') {
+				document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
+				} else if(name == 'header') {
+				document.getElementById('html').value += '<header class="'+name+'"> </header>\r';
+				} else if(name == 'nav') {
+				document.getElementById('html').value += '<nav class="'+name+'"> </nav>\r';
+				} else {
+				document.getElementById('html').value += '<article class="'+name+'"> </article>\r';
+			}
+		} else if(method == 'section') {
+			if(name == 'footer') {
+				document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
+				} else if(name == 'header') {
+				document.getElementById('html').value += '<header class="'+name+'"> </header>\r';
+				} else if(name == 'nav') {
+				document.getElementById('html').value += '<nav class="'+name+'"> </nav>\r';
+				} else {
+				document.getElementById('html').value += '<section class="'+name+'"> </section>\r';
+			}
+		} else {
+				document.getElementById('html').value += '<div class="'+name+'"> </div>\r';
 		}
 	}
 }
+
 </script>
 </body>
 </html>
