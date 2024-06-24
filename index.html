@@ -33,7 +33,7 @@ div {
 .editor { 
 	display:block;
 	border: 1px solid grey;
-	width:80%;
+	width:100vw;
 	margin-top: 38px;
 	height:auto;
 }
@@ -67,6 +67,7 @@ div {
 	font-size: 28px;
 	padding-left: 20px;
 	padding-right:-20px;
+	position: relative;
 }
 
 .small {
@@ -130,7 +131,7 @@ h1 {
     );
 }
 .rulery  { 
-  height: 1200px;
+  height: 3400px;
   width: 19px;
  background-image: 
     	repeating-linear-gradient(
@@ -285,9 +286,7 @@ function insertdiv(grid, n) {
 	let name = document.getElementById(grid).children[0].innerText.split('\n')[0].replaceAll(' ','-').toLowerCase();
 	let html = document.getElementById('html').value;
 	let regExp = new RegExp("<"+name+".*>(.*)<\/"+name+">/gim");
-	console.log("<"+name+".*>(.*)<\/"+name+">/gi");
 	html = html.replace(regExp,'<'+name+'.*>'+divs+'</'+name+'>');
-
 }
 
 function setcolors() {
