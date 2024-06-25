@@ -94,7 +94,7 @@ textarea {
 	background-color: white;
 	color: black;
 	border: 1px solid grey;
-	font-size: 11px;
+	font-size: 10px;
 	width: 100%;
 }
 
@@ -292,7 +292,7 @@ function insertdiv(grid, n) {
 	let name = document.getElementById(grid).children[0].innerText.split('\n')[0].replaceAll(' ','-').toLowerCase();
 	let html = document.getElementById('html').value;
 	let regExp = new RegExp("<"+name+".*>(.*)<\/"+name+">/gim");
-	html = html.replace(regExp,'<'+name+'.*>'+divs+'</'+name+'>');
+	html = html.replace(regExp,'<'+name+'.*><div></div></'+name+'>');
 }
 
 function setcolors() {
@@ -375,7 +375,7 @@ function div(grid,c) {
 			templocation = 'right';
 			prevwith = fullwidth;
 			} else {
-			document.getElementById('css').value += 'display: block;\r';
+			document.getElementById('css').value += 'display: block;\r\t';
 			templocation = 'left';
 			prevwith = 0;
 		}
