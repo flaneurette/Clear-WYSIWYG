@@ -219,6 +219,10 @@ p {
 	padding:0px;
 	display:inline-block;
 }
+button {
+	float:right;
+	margin-bottom: 10px;
+}
 
 </style>
 </head>
@@ -244,7 +248,7 @@ p {
 	<hr />
 	Font color <input type="color" id="fc" class="bg" value="#666666" onchange="setcolors();" />
 	<hr />	
-	<label>CSS</label>
+	<label>CSS</label> <button onclick="copy('css')">Copy</button>
 	<textarea cols="25" rows="25" id="css"></textarea>
 	<hr />
 	Method
@@ -254,7 +258,7 @@ p {
 	<option value="div">div</option>
 	</select>
 	<hr />
-	<label>HTML</label>
+	<label>HTML</label><button onclick="copy('html')">Copy</button>
 	<textarea cols="25" rows="25" id="html"></textarea>
 </div>
 <div id="x"></div>
@@ -406,6 +410,14 @@ function div(grid,c) {
 		}
 	}
 	document.getElementById('html').value += '</body>\r</html>\r';
+}
+
+function copy(what) {
+	// w3schools example
+	var c = document.getElementById(what);
+	c.select();
+	c.setSelectionRange(0, 99999); // for mobile
+	navigator.clipboard.writeText(c.value);
 }
 
 </script>
