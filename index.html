@@ -42,7 +42,7 @@ div {
     width:200px;
 	display:block;
 	background-color: #efefef;
-	color: black;
+	color: grey;
 	min-height: 1000px;
 	height: auto;
 	padding: 20px;
@@ -61,10 +61,10 @@ div {
 .grid {
 	border:1px dashed lightgrey;
 	resize: both;
-	overflow:auto;
+	overflow:hidden;
 	width:98.7%;
 	height:100%;
-	line-height: 100px;
+	line-height: 99px;
 	font-size: 28px;
 	padding-left: 20px;
 	padding-right:-20px;
@@ -174,9 +174,12 @@ h1 {
 hr {
 	display: block;
 	clear:both;
-	background-color: #dedede;
-	border: 1px solid #dedede;
-	margin: 10px;
+	background-color: #efefef;
+	border: 1px solid #efefef;
+	margin: 0px;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .grid > div {
@@ -326,13 +329,14 @@ function div(grid,c) {
 	}	
 	let x = event.clientX;
 	let y = event.clientY;
-	document.getElementById('x').style.left = (x +10) +'px';
+	document.getElementById('x').style.left = (x+10) +'px';
 	let docChildren = document.getElementById('editor').children;
 	let bgcolor = document.getElementById('bg').value;
-	document.getElementById('css').value = 'body { \rbackground-color: '+bgcolor+';\r }\r';		
-	document.getElementById('css').value += 'div, article, header, nav, footer { \rborder: 1px dashed black;\r }\r';
-	document.getElementById('html').value = '';
-	
+	document.getElementById('css').value = 'body { \r\tbackground-color: '+bgcolor+';\r }\r';		
+	document.getElementById('css').value += 'div, article, header, nav, footer { \r\tborder: 1px dashed black;\r }\r';
+	document.getElementById('html').value = '<!DOCTYPE html>\r<html>\r<head>';
+	document.getElementById('html').value += '<meta charset="utf-8"/>\r<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\r<meta http-equiv="Content-type" content="text/html; charset=UTF-8">\r<meta name="viewport" content="width=device-width, initial-scale=1.0">\r';
+	document.getElementById('html').value += '<style>\r</style>\r</head>\r<body>\r';
 	document.getElementById(grid).style.width = (ceil) +'px';
 	
 	var templocation = 'left';
@@ -361,13 +365,13 @@ function div(grid,c) {
 		}
 		document.getElementById('tip').innerHTML = divw + ' - ' + divh;
 		document.getElementById('tip').innerHTML = divw + ' - ' +divh;
-		document.getElementById('css').value += '\r.' + name + " {\r";
-		document.getElementById('css').value += 'background-color: ' + color + ';\r';
-		document.getElementById('css').value += 'height: ' + divh + ';\r';
-		document.getElementById('css').value += 'width: ' + fullwidth  + '%;\r';
-		document.getElementById('css').value += 'float: '+templocation+';\r';
+		document.getElementById('css').value += '\r.' + name + " {\r\t";
+		document.getElementById('css').value += 'background-color: ' + color + ';\r\t';
+		document.getElementById('css').value += 'height: ' + divh + ';\r\t';
+		document.getElementById('css').value += 'width: ' + fullwidth  + '%;\r\t';
+		document.getElementById('css').value += 'float: '+templocation+';\r\t';
 		if(fullwidth < 50 && prevwidth < 50 && templocation =='left') {
-			document.getElementById('css').value += 'display: inline-block;\r';
+			document.getElementById('css').value += 'display: inline-block;\r\t';
 			templocation = 'right';
 			prevwith = fullwidth;
 			} else {
@@ -379,28 +383,29 @@ function div(grid,c) {
 		
 		if(method == 'article') {
 			if(name == 'footer') {
-				document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
+				document.getElementById('html').value += '\t<footer class="'+name+'">'+name+'</footer>\r';
 				} else if(name == 'header') {
-				document.getElementById('html').value += '<header class="'+name+'"> </header>\r';
+				document.getElementById('html').value += '\t<header class="'+name+'">'+name+'</header>\r';
 				} else if(name == 'nav') {
-				document.getElementById('html').value += '<nav class="'+name+'"> </nav>\r';
+				document.getElementById('html').value += '\t<nav class="'+name+'">'+name+'</nav>\r';
 				} else {
-				document.getElementById('html').value += '<article class="'+name+'"> </article>\r';
+				document.getElementById('html').value += '\t<article class="'+name+'">'+name+'</article>\r';
 			}
 		} else if(method == 'section') {
 			if(name == 'footer') {
-				document.getElementById('html').value += '<footer class="'+name+'"> </footer>\r';
+				document.getElementById('html').value += '\t<footer class="'+name+'">'+name+'</footer>\r';
 				} else if(name == 'header') {
-				document.getElementById('html').value += '<header class="'+name+'"> </header>\r';
+				document.getElementById('html').value += '\t<header class="'+name+'">'+name+'</header>\r';
 				} else if(name == 'nav') {
-				document.getElementById('html').value += '<nav class="'+name+'"> </nav>\r';
+				document.getElementById('html').value += '\t<nav class="'+name+'">'+name+'</nav>\r';
 				} else {
-				document.getElementById('html').value += '<section class="'+name+'"> </section>\r';
+				document.getElementById('html').value += '\t<section class="'+name+'">'+name+'</section>\r';
 			}
 		} else {
-				document.getElementById('html').value += '<div class="'+name+'"> </div>\r';
+				document.getElementById('html').value += '\t<div class="'+name+'">'+name+'</div>\r';
 		}
 	}
+	document.getElementById('html').value += '</body>\r</html>\r';
 }
 
 </script>
